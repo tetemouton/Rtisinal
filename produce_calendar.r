@@ -1,4 +1,4 @@
-produce_calender <- function(act=act, keep.site="Atafu", datrng=datrng, site.ctch=ATFdat, sav.dir="C:/Tokelau/"){
+produce_calendar <- function(act=act, keep.site="Atafu", datrng=datrng, site.ctch=ATFdat, sav.dir="C:/Tokelau/"){
   
   
   act.tab <- act %>% filter(site == keep.site)   # Just grab the site you are interested in
@@ -14,13 +14,13 @@ produce_calender <- function(act=act, keep.site="Atafu", datrng=datrng, site.ctc
   
   
   windows(2500,3000)
-    pl <- ggcal1(dates=tmp$date1, fills=tmp$Catch, textvl=tmp$Pres) + theme(legend.position="none") + scale_fill_gradient2(low="grey55", mid="white", high="steelblue2", midpoint=0.5, na.value="grey92")
+    pl <- calendar_plot(dates=tmp$date1, fills=tmp$Catch, textvl=tmp$Pres) + theme(legend.position="none") + scale_fill_gradient2(low="grey55", mid="white", high="steelblue2", midpoint=0.5, na.value="grey92")
     print(pl)
     savePlot(file=paste0(sav.dir, "Calender_Activity_", keep.site, ".png"), type="png")
   dev.off()
   
   windows(2500,3000)
-    pl <- ggcal1(dates=tmp$date1, fills=tmp$Catch, textvl=tmp$N) + theme(legend.position="none") + scale_fill_gradient2(low="grey55", mid="white", high="steelblue2", midpoint=0.5, na.value="grey92")
+    pl <- calendar_plot(dates=tmp$date1, fills=tmp$Catch, textvl=tmp$N) + theme(legend.position="none") + scale_fill_gradient2(low="grey55", mid="white", high="steelblue2", midpoint=0.5, na.value="grey92")
     print(pl)
     savePlot(file=paste0(sav.dir, "Calender_Trips_", keep.site, ".png"), type="png")
   dev.off()
