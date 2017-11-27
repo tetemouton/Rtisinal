@@ -1,4 +1,4 @@
-plot.yrmonth <- function(dat=tmp1, xcl="yrmon", ycl="N", flcl=NULL, faccl="site", xlbl="Year-month", ylbl="Number of unique vessels", txsz=16,
+plot_yrmonth <- function(dat=tmp1, xcl="yrmon", ycl="N", flcl=NULL, faccl="site", xlbl="Year-month", ylbl="Number of unique vessels", txsz=16,
                          ticknm=ticknm, flcols=NULL, legpos=c(0.95,0.85), postype="stack"){
   
   

@@ -1,4 +1,4 @@
-cal.yrmonth <- function(dat=trip_effort_catch, yrmn="yrmon", grpnm="vessel_name", site="site", xtrnm=NULL){
+cal_yrmonth <- function(dat=trip_effort_catch, yrmn="yrmon", grpnm="vessel_name", site="site", xtrnm=NULL){
   
   if(is.null(xtrnm)) {
     
@@ -12,7 +12,7 @@ cal.yrmonth <- function(dat=trip_effort_catch, yrmn="yrmon", grpnm="vessel_name"
     
   }
   
-  tmp1$mind <- round(tmp1[, yrmn] %% 1 * 12 + 1)   # Necessary to round to make a proper interger, kind of...
+  tmp1$mind <- round(tmp1[, yrmn] %% 1 * 12 + 1)   # Necessary to round to make a proper integer, kind of...
   tmp1$ticnm <- labm[tmp1$mind] 
   tmp1$ticnm <- ifelse(tmp1$ticnm == "Jan", paste(floor(tmp1$yrmon), tmp1$ticnm), tmp1$ticnm)
   

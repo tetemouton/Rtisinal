@@ -37,6 +37,6 @@ get_recorded_catch <- function(tmp=tmp, keep.site="Atafu", keep.meths=c("DS","Gi
   pr.xtab <- xtable(pr.tab, align=c(rep("l", 2),rep("c", dim(pr.tab)[2]-1)), caption=captn, label=lbl, digits=0) 
   print.xtable(pr.xtab, file=sav.dir, include.rownames=FALSE, sanitize.text.function = function(x) x, size=txsz, caption.placement="top")     
   
-  return(list(ctch=ctch, ctch.tab=ctch.tab))
+  return(list(ctch=ctch, ctch.tab=ctch.tab, Prtab=pr.tab))
   
 }
