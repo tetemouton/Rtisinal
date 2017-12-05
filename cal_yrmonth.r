@@ -1,15 +1,28 @@
-cal_yrmonth <- function(dat=trip_effort_catch, yrmn="yrmon", grpnm="vessel_name", site="site", xtrnm=NULL){
+cal_yrmonth <- function(dat=trip_effort_catch, yrmn="yrmon", grpnm="vessel_name", site="site", xtrnm=NULL, trips=TRUE){
   
-  if(is.null(xtrnm)) {
-    
-    tmp <- dat %>% group_by_(yrmn, grpnm, site) %>% summarise(N=n())
-    tmp1 <- tmp %>% group_by_(yrmn, site) %>% summarise(N=n()) %>% as.data.frame()
-    
+  if(trips){  
+    if(is.null(xtrnm)) {
+      
+      tmp <- dat %>% group_by_(yrmn, grpnm, site) %>% summarise(N=n())
+      tmp1 <- tmp %>% group_by_(yrmn, site) %>% summarise(N=n()) %>% as.data.frame()
+      
+    } else {
+      
+      tmp <- dat %>% group_by_(yrmn, grpnm, site, xtrnm) %>% summarise(N=n())
+      tmp1 <- tmp %>% group_by_(yrmn, site, xtrnm) %>% summarise(N=n()) %>% as.data.frame()
+      
+    }
   } else {
     
-    tmp <- dat %>% group_by_(yrmn, grpnm, site, xtrnm) %>% summarise(N=n())
-    tmp1 <- tmp %>% group_by_(yrmn, site, xtrnm) %>% summarise(N=n()) %>% as.data.frame()
-    
+    if(is.null(xtrnm)) {
+      
+      tmp1 <- dat %>% group_by_(yrmn, grpnm, site) %>% summarise(N=sum(sp_kg)) %>% as.data.frame()
+      
+    } else {
+      
+      tmp1 <- dat %>% group_by_(yrmn, grpnm, site, xtrnm) %>% summarise(N=sum(sp_kg)) %>% as.data.frame()
+      
+    }
   }
   
   tmp1$mind <- round(tmp1[, yrmn] %% 1 * 12 + 1)   # Necessary to round to make a proper integer, kind of...
