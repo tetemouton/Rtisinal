@@ -11,7 +11,7 @@ summarise_wgts <- function(tmp=tmp, sppcds=sppcds, sav.dir="C:/Tokelau_Artisinal
   names(pr.tab) <- c("Code","Common","Scientific","Fig Name","Weight","N")
   
   # Convert to latex table and save
-  pr.xtab <- xtable(pr.tab, align=c(rep("l", 5),rep("c", 2))) #, caption=captn, label=lbl) # digits=rep(0,5), 
+  pr.xtab <- xtable(pr.tab, align=c(rep("l", 5),rep("c", 2)), digits=c(rep(0, 5), 2, 0)) #, caption=captn, label=lbl) # digits=rep(0,5), 
   print.xtable(pr.xtab, file=sav.dir, include.rownames=FALSE, sanitize.text.function = function(x) x, size=txsz, caption.placement="top")
   
   return(avwgts)

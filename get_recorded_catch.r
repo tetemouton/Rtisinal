@@ -4,21 +4,16 @@ get_recorded_catch <- function(tmp=tmp, keep.site="Atafu", keep.meths=c("DS","Gi
   
   ctch <- tmp %>% filter(site == keep.site) %>% mutate(Method=ifelse(meth %in% keep.meths, as.character(meth), "Other"))
   
-  
-  
   ctch.tab <- ctch %>% group_by(sp_code, Method) %>% summarise(catch=sum(sp_kg)) %>% spread(key="Method", value="catch", fill=0)
   
   ctch.tab$Total <- apply(ctch.tab[, -1], 1, sum)
   
   ctch.tab %<>% arrange(desc(Total)) %>% as.data.frame()
   
-  
   tmp1 <- ctch.tab[ctch.tab$Total >= cut.wgt,]
   tmp2 <- ctch.tab[ctch.tab$Total < cut.wgt,]
   tmp2$sp_code <- "Other"
   tmp2 %<>% group_by(sp_code) %>% summarise_all(funs(sum))
-  
-  
   
   occs <- ctch %>% mutate(catgry=sppcds$form[match(sp_code, sppcds$sp_code)])
   occs$catgry <- ifelse(is.na(occs$catgry), "Coastal", occs$catgry)
