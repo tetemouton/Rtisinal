@@ -9,10 +9,10 @@ calendar_plot_imputed <-
     filler <- tibble(date = seq(mindate, maxdate, by = "1 day"))
     
     t1 <- tibble(date = dates, fill = fills, txtval = textvl) %>% right_join(filler, by = "date") %>%
-      mutate(dow = as.numeric(format(date, "%w"))) %>% mutate(month = format(date, "%B")) %>% mutate(woy = as.numeric(format(date, "%U"))) %>%
-      mutate(year = as.numeric(format(date, "%Y"))) %>% 
-      mutate(month = factor(month, levels = months, ordered = TRUE)) %>% 
-      arrange(year, month) %>% mutate(monlabel = month)
+                 mutate(dow = as.numeric(format(date, "%w"))) %>% mutate(month = format(date, "%B")) %>% mutate(woy = as.numeric(format(date, "%U"))) %>%
+                 mutate(year = as.numeric(format(date, "%Y"))) %>% 
+                 mutate(month = factor(month, levels = months, ordered = TRUE)) %>% 
+                 arrange(year, month) %>% mutate(monlabel = month)
     
     if (length(unique(t1$year)) > 1) {
       t1$monlabel <- paste(t1$month, t1$year)
@@ -25,13 +25,13 @@ calendar_plot_imputed <-
     weekdays <- c("S", "M", "T", "W", "T", "F", "S")
     
     ggplot(t2, aes(dow, y)) + geom_tile(aes(fill=fill), color = "gray80") + geom_text(aes(label=txtval), size=3, nudge_x=0.2, nudge_y=-0.2) +
-      facet_wrap(~monlabel, ncol = 3, scales = "free") + scale_x_continuous(expand = c(0, 0), position = "top", breaks = seq(0, 6), labels = weekdays) + 
-      scale_y_continuous(expand = c(0, 0)) + geom_text(aes(label=round(predval)), size=3, nudge_x=-0.1, nudge_y=0.25, colour="white") +
-      theme(panel.background = element_rect(fill = NA, color = NA), strip.background = element_rect(fill = NA, color = NA),
-            strip.text.x = element_text(hjust = 0, face = "bold"), 
-            legend.title = element_blank(), axis.ticks = element_blank(), 
-            axis.title = element_blank(), axis.text.y = element_blank(), 
-            strip.placement = "outsite")
+           facet_wrap(~monlabel, ncol = 3, scales = "free") + scale_x_continuous(expand = c(0, 0), position = "top", breaks = seq(0, 6), labels = weekdays) + 
+           scale_y_continuous(expand = c(0, 0)) + geom_text(aes(label=round(predval)), size=3, nudge_x=-0.1, nudge_y=0.25, colour="white") +
+           theme(panel.background = element_rect(fill = NA, color = NA), strip.background = element_rect(fill = NA, color = NA),
+                 strip.text.x = element_text(hjust = 0, face = "bold"), 
+                 legend.title = element_blank(), axis.ticks = element_blank(), 
+                 axis.title = element_blank(), axis.text.y = element_blank(), 
+                 strip.placement = "outsite")
   }
 
 
