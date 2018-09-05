@@ -1,7 +1,7 @@
-produce_calendar <- function(act=act, keep.site="Atafu", datrng=datrng, site.ctch=ATFdat, sav.dir="C:/Tokelau/"){
+produce_calendar <- function(act=act, keep.site="Atafu", datrng=datrng, site.ctch=ATFdat, sav.dir="C:/Tokelau/", tim.vec=c("2016-8-31","2017-8-31")){
   
   
-  act.tab <- act %>% filter(site == keep.site)   # Just grab the site you are interested in
+  act.tab <- act %>% filter(site == keep.site, date1 > tim.vec[1], date1 <= tim.vec[2])   # Just grab the site you are interested in
   
   ctch.trps <- site.ctch$ctch %>% group_by(date1, art_trip_id) %>% summarise(N=n())
   ctch.trps %<>% group_by(date1) %>% summarise(N=n())

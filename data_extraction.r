@@ -2,7 +2,7 @@ data.extraction <- function(sv.dir="C:/Tokelau_Artisinal/Data/", cnt.code="TK"){
   
   require(RODBC)
 
-  myConn<-odbcDriverConnect(connection="Driver=SQL Server Native Client 10.0;Server=nousql02;Database=tufman2_copy;
+  myConn<-odbcDriverConnect(connection="Driver=SQL Server Native Client 10.0;Server=nousql03;Database=tufman2;
                             Trusted_Connection=yes;")
 
 # tp<-sqlTables(myConn) # to see all the tables the artisinal data are all on the art2. bla tables 

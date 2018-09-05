@@ -1,8 +1,8 @@
 get_recorded_catch <- function(tmp=tmp, keep.site="Atafu", keep.meths=c("DS","Gillnet","HL_BT","HL_MW","Scoop","Troll"), cut.wgt=100, sppcds=sppcds,
                                sel.vec=c(10,2:5,7,8,6,9), nm.vec=c("Name","Dropstone","Netting","HL-bottom","HL-midwater","Scoop","Troll","Other","Total"),
-                               captn="Empty", txsz="footnotesize", lbl="tab:AtafuWt", sav.dir="C:/Tokelau_Artisinal/tmp.tex"){
+                               captn="Empty", txsz="footnotesize", lbl="tab:AtafuWt", sav.dir="C:/Tokelau_Artisinal/tmp.tex", tim.vec=c("2016-8-31","2017-8-31")){
   
-  ctch <- tmp %>% filter(site == keep.site) %>% mutate(Method=ifelse(meth %in% keep.meths, as.character(meth), "Other"))
+  ctch <- tmp %>% filter(site == keep.site, date1 > tim.vec[1], date1 <= tim.vec[2]) %>% mutate(Method=ifelse(meth %in% keep.meths, as.character(meth), "Other"))
   
   ctch.tab <- ctch %>% group_by(sp_code, Method) %>% summarise(catch=sum(sp_kg)) %>% spread(key="Method", value="catch", fill=0)
   
