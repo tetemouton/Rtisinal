@@ -16,7 +16,6 @@ summarise_wgts <- function(tmp=tmp, sppcds=sppcds, sav.dir="C:/Tokelau_Artisinal
   
   return(avwgts)
   
-  
 }
 
 
