@@ -108,8 +108,8 @@ trip_effort_catch <- sqlQuery(myConn, paste0("SELECT art2.vw_trips_", cnt.code, 
                               art2.catch.sp_kg
                               FROM  
                               art2.effort INNER JOIN art2.vw_trips_", cnt.code, "_all ON art2.effort.art_trip_id = art2.vw_trips_", cnt.code, "_all.art_trip_id 
-                              LEFT JOIN art2.catch ON art2.catch.art_effort_id = art2.effort.art_effort_id
-                              INNER JOIN art2.vessels ON art2.vessels.vessel_id = art2.vw_trips_", cnt.code, "_all.vessel_id
+                              LEFT OUTER JOIN art2.catch ON art2.catch.art_effort_id = art2.effort.art_effort_id
+                              LEFT OUTER JOIN art2.vessels ON art2.vessels.vessel_id = art2.vw_trips_", cnt.code, "_all.vessel_id
                               INNER JOIN art2.areas ON art2.areas.art_area_id = art2.effort.art_area_id
                               INNER JOIN art2.landing_sites ON art2.landing_sites.landing_site_id = art2.vw_trips_", cnt.code, "_all.landing_site_id
                               LEFT OUTER JOIN tuf2.translations tp ON tp.translation_key = 'LookupList_ArtisanalFishingMethods' + CONVERT(VARCHAR,art2.effort.fish_method_id)
