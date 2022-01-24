@@ -4,11 +4,11 @@ plot_yrmonth <- function(dat=tmp1, xcl="yrmon", ycl="N", flcl=NULL, faccl="site"
   
   if(is.null(flcl)){
     
-    pl <- ggplot(dat, aes_string(x=xcl, y=ycl)) + geom_bar(stat="identity", fill=alpha("dodgerblue3",0.7), colour="black")
+    pl <- ggplot(dat, aes_string(x=xcl, y=ycl)) + geom_bar(stat="identity", fill=alpha("dodgerblue3",0.7), colour="black", width=1)
     
   } else {
     
-    pl <- ggplot(dat, aes_string(x=xcl, y=ycl, fill=flcl)) + geom_bar(position=postype, stat="identity", colour="black") +
+    pl <- ggplot(dat, aes_string(x=xcl, y=ycl, fill=flcl)) + geom_bar(position=postype, stat="identity", colour="black", width=1) +
                  theme(legend.position=legpos, legend.title=element_blank()) + scale_fill_manual(values=flcols)
     
   }
@@ -17,7 +17,7 @@ plot_yrmonth <- function(dat=tmp1, xcl="yrmon", ycl="N", flcl=NULL, faccl="site"
   
   pl <- pl + xlab(xlbl) + ylab(ylbl) + scale_x_discrete(labels=ticknm) +
              theme(panel.grid.major=element_blank(), panel.grid.minor=element_blank(),
-                   text=element_text(size=txsz), axis.text.x=element_text(angle=90, hjust=1))
+                   text=element_text(size=txsz), axis.text.x=element_text(angle=90, hjust=1, vjust=0.5))
   
   
   return(pl)

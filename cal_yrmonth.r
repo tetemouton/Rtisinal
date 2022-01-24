@@ -16,11 +16,11 @@ cal_yrmonth <- function(dat=trip_effort_catch, yrmn="yrmon", grpnm="vessel_name"
     
     if(is.null(xtrnm)) {
       
-      tmp1 <- dat %>% group_by_(yrmn, grpnm, site) %>% summarise(N=sum(sp_kg)) %>% as.data.frame()
+      tmp1 <- dat %>% group_by_(yrmn, grpnm, site) %>% summarise(N=sum(newwt)) %>% as.data.frame()
       
     } else {
       
-      tmp1 <- dat %>% group_by_(yrmn, grpnm, site, xtrnm) %>% summarise(N=sum(sp_kg)) %>% as.data.frame()
+      tmp1 <- dat %>% group_by_(yrmn, grpnm, site, xtrnm) %>% summarise(N=sum(newwt)) %>% as.data.frame()
       
     }
   }

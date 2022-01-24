@@ -19,8 +19,8 @@ function (dates, fills, textvl)
   }
   
   t2 <- t1 %>% mutate(monlabel = factor(monlabel, ordered = TRUE)) %>% 
-    mutate(monlabel = fct_inorder(monlabel)) %>% mutate(monthweek = woy - 
-                                                          min(woy), y = max(monthweek) - monthweek + 1)
+               mutate(monlabel = fct_inorder(monlabel)) %>% mutate(monthweek = woy - 
+                                                                   min(woy), y = max(monthweek) - monthweek + 1)
   
   weekdays <- c("S", "M", "T", "W", "T", "F", "S")
   
@@ -33,13 +33,3 @@ function (dates, fills, textvl)
                axis.title = element_blank(), axis.text.y = element_blank(), 
                strip.placement = "outsite")
 }
-
-
-
-
-
-
-
-
-
-
